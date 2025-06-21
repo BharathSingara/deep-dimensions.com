@@ -329,7 +329,7 @@ nav ul li a:hover::after {
 
 /* Gradient menu style */
 nav.gradient-menu ul {
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 @media (min-width: 769px) {
@@ -342,16 +342,18 @@ nav.gradient-menu ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     padding: 0;
     border-radius: 50%;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     overflow: hidden;
     transition: all 0.5s ease;
-    color: #333333;
-    font-size: 1rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
   }
 
   nav.gradient-menu ul li a i {
@@ -375,7 +377,7 @@ nav.gradient-menu ul {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: linear-gradient(45deg, #222222, #000000);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
     opacity: 0;
     transition: opacity 0.5s ease;
   }
@@ -388,7 +390,7 @@ nav.gradient-menu ul {
     right: 0;
     height: 100%;
     border-radius: 50%;
-    background: linear-gradient(45deg, #222222, #000000);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
     filter: blur(15px);
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -396,9 +398,9 @@ nav.gradient-menu ul {
   }
 
   nav.gradient-menu ul li a:hover {
-    width: 180px;
+    width: 160px;
     box-shadow: none;
-    color: #ffffff;
+    color: var(--text-color);
   }
 
   nav.gradient-menu ul li a:hover i {
