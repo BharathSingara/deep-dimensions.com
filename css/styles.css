@@ -8,9 +8,9 @@
   --background-color: #000000;
   --gradient-start: #000000;
   --gradient-end: #000000;
-  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+  --font-body: 'Roboto', sans-serif;
   --success-color: #00ff88;
   --warning-color: #ffaa00;
   --error-color: #ff4444;
@@ -802,7 +802,7 @@ nav ul li a:hover::after {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 60px;
 }
 
