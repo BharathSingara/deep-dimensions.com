@@ -1266,6 +1266,21 @@ footer::before {
   visibility: hidden;
 }
 
+.preloader.auto-fade {
+  animation: preloaderAutoFade 5s forwards;
+}
+
+@keyframes preloaderAutoFade {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .loader {
   width: 120px;
   height: 120px;
