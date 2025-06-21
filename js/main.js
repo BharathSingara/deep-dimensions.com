@@ -4,7 +4,6 @@
 function initDeepDimensions() {
     initPreloader();
     initScrollProgress();
-    initThemeToggle();
     initHeroAnimation();
     initAboutAnimation();
     initParticles();
@@ -61,51 +60,6 @@ function initScrollProgress() {
     });
 }
 
-// Theme Toggle
-function initThemeToggle() {
-    const themeToggle = document.createElement('div');
-    themeToggle.className = 'theme-toggle';
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    themeToggle.setAttribute('aria-label', 'Toggle theme');
-    themeToggle.setAttribute('role', 'button');
-    themeToggle.setAttribute('tabindex', '0');
-    document.body.appendChild(themeToggle);
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.body.classList.add(savedTheme);
-        updateThemeIcon(savedTheme === 'light-theme');
-    }
-    
-    themeToggle.addEventListener('click', toggleTheme);
-    themeToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleTheme();
-        }
-    });
-    
-    function toggleTheme() {
-        const isLight = document.body.classList.contains('light-theme');
-        document.body.classList.toggle('light-theme');
-        
-        const newTheme = isLight ? 'dark-theme' : 'light-theme';
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(!isLight);
-        
-        // Add transition effect
-        document.body.style.transition = 'all 0.3s ease';
-        setTimeout(() => {
-            document.body.style.transition = '';
-        }, 300);
-    }
-    
-    function updateThemeIcon(isLight) {
-        const icon = themeToggle.querySelector('i');
-        icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
-    }
-}
 
 // Enhanced Three.js scene for hero section
 function initHeroAnimation() {
