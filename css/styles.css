@@ -58,47 +58,6 @@ body {
   transition: width 0.1s ease;
 }
 
-/* Theme Toggle */
-.theme-toggle {
-  position: fixed;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background: rgba(26, 26, 64, 0.8);
-  border: 1px solid var(--accent-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1000;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.theme-toggle:hover {
-  background: var(--accent-color);
-  color: var(--primary-color);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.theme-toggle i {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-/* Light Theme Variables */
-body.light-theme {
-  --primary-color: #f8f9fa;
-  --secondary-color: #6c5ce7;
-  --accent-color: #0984e3;
-  --text-color: #2d3436;
-  --background-color: #ffffff;
-  --gradient-start: #f8f9fa;
-  --gradient-end: #e9ecef;
-}
 
 /* Glowing elements */
 .glow {
@@ -1251,11 +1210,6 @@ footer::before {
     text-align: center;
   }
   
-  .theme-toggle {
-    right: 15px;
-    width: 45px;
-    height: 45px;
-  }
   
   .services-grid {
     grid-template-columns: 1fr;
@@ -1506,7 +1460,6 @@ nav ul li a:focus {
 @media print {
   .preloader,
   .scroll-top,
-  .theme-toggle,
   .custom-cursor,
   .cursor-follower,
   #particles-js {
