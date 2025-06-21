@@ -799,6 +799,30 @@ nav ul li a:hover::after {
   transform: translateX(8px);
 }
 
+/* Interactive Robot Section */
+.robot-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+}
+
+.robot-viewer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.robot-text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 20vh;
+  font-family: var(--font-secondary);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
 /* Enhanced Contact Section */
 .contact {
   background: linear-gradient(to bottom, var(--gradient-end), var(--background-color));
