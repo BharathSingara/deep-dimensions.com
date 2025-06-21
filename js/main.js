@@ -34,14 +34,14 @@ function initPreloader() {
     // Add loading progress
     let progress = 0;
     const progressInterval = setInterval(() => {
-        progress += Math.random() * 15;
+        progress += 10; // finish loading in ~1 second
         if (progress >= 100) {
             progress = 100;
             clearInterval(progressInterval);
             setTimeout(() => {
                 preloader.classList.add('fade-out');
                 document.body.classList.remove('loading');
-            }, 500);
+            }, 200); // shorter delay before fade-out
         }
     }, 100);
 }
