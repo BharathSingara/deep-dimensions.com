@@ -326,6 +326,97 @@ nav ul li a:hover::after {
   transform: scale(1.1);
 }
 
+/* Gradient menu style */
+nav.gradient-menu ul {
+  gap: 1.5rem;
+}
+
+@media (min-width: 769px) {
+  nav.gradient-menu ul li {
+    margin-left: 0;
+  }
+
+  nav.gradient-menu ul li a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: all 0.5s ease;
+    color: #333333;
+    font-size: 1rem;
+  }
+
+  nav.gradient-menu ul li a i {
+    transition: transform 0.5s ease;
+    z-index: 2;
+  }
+
+  nav.gradient-menu ul li a span {
+    position: absolute;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: 2;
+  }
+
+  nav.gradient-menu ul li a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #222222, #000000);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  nav.gradient-menu ul li a::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #222222, #000000);
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+  }
+
+  nav.gradient-menu ul li a:hover {
+    width: 180px;
+    box-shadow: none;
+    color: #ffffff;
+  }
+
+  nav.gradient-menu ul li a:hover i {
+    transform: scale(0);
+  }
+
+  nav.gradient-menu ul li a:hover span {
+    transform: scale(1);
+  }
+
+  nav.gradient-menu ul li a:hover::before {
+    opacity: 1;
+  }
+
+  nav.gradient-menu ul li a:hover::after {
+    opacity: 0.5;
+  }
+}
+
 /* Enhanced Hero Section */
 .hero {
   height: 100vh;
