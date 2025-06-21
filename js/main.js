@@ -734,6 +734,12 @@ function initAOS() {
             easing: 'ease-out-cubic',
             anchorPlacement: 'top-bottom'
         });
+    } else {
+        // Fallback: reveal elements if AOS library fails to load
+        document.body.classList.add('no-aos');
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            el.classList.add('aos-animate');
+        });
     }
 }
 
