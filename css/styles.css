@@ -16,6 +16,17 @@
   --error-color: #ff4444;
 }
 
+/* Light theme overrides */
+body.light-mode {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --accent-color: #000000;
+  --text-color: #000000;
+  --background-color: #ffffff;
+  --gradient-start: #ffffff;
+  --gradient-end: #e0e0e0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -325,6 +336,22 @@ nav ul li a:hover::after {
 .mobile-menu-btn:hover {
   color: var(--accent-color);
   transform: scale(1.1);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent-color);
+  transform: rotate(20deg);
 }
 
 /* Gradient menu style */
@@ -1261,6 +1288,10 @@ footer::before {
   }
   
   .mobile-menu-btn {
+    display: block;
+  }
+
+  .theme-toggle {
     display: block;
   }
   

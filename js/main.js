@@ -12,6 +12,7 @@ function initDeepDimensions() {
     initScrollAnimations();
     initHeaderScroll();
     initMobileMenu();
+    initThemeToggle();
     initScrollToTop();
     initServiceCards();
     initTypedText();
@@ -649,6 +650,22 @@ function initMobileMenu() {
             menuBtn.classList.remove('active');
             menuBtn.querySelector('i').className = 'fas fa-bars';
             document.body.style.overflow = '';
+        }
+    });
+}
+
+// Theme toggle
+function initThemeToggle() {
+    const toggleBtn = document.querySelector('.theme-toggle');
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', function () {
+        document.body.classList.toggle('light-mode');
+        const icon = toggleBtn.querySelector('i');
+        if (document.body.classList.contains('light-mode')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
         }
     });
 }
