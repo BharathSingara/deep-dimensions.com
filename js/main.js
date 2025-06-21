@@ -1,8 +1,7 @@
 // Enhanced JavaScript for Deep Dimensions 3D Website
 
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
+// Initialize all components when the DOM is ready
+function initDeepDimensions() {
     initPreloader();
     initScrollProgress();
     initThemeToggle();
@@ -20,7 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormHandling();
     initSmoothScrolling();
     initPerformanceOptimizations();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDeepDimensions);
+} else {
+    initDeepDimensions();
+}
 
 // Enhanced Preloader
 function initPreloader() {
