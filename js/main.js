@@ -7,6 +7,7 @@ function initDeepDimensions() {
     initHeroAnimation();
     initAboutAnimation();
     initParticles();
+    initServiceParticles();
     initCustomCursor();
     initScrollAnimations();
     initHeaderScroll();
@@ -471,6 +472,28 @@ function initParticles() {
             }
         },
         retina_detect: true
+    });
+}
+
+// Particles for services section
+function initServiceParticles() {
+    const container = document.getElementById('services-particles');
+    if (!container || !window.tsParticles) return;
+
+    tsParticles.load('services-particles', {
+        fullScreen: { enable: false },
+        background: { color: 'transparent' },
+        particles: {
+            number: { value: 80, density: { enable: true, area: 800 } },
+            color: { value: '#ffffff' },
+            opacity: {
+                value: { min: 0.1, max: 1 },
+                animation: { enable: true, speed: 1, sync: false }
+            },
+            size: { value: { min: 1, max: 3 } },
+            move: { enable: true, speed: { min: 0.1, max: 1 } }
+        },
+        detectRetina: true
     });
 }
 
