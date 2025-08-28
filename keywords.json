@@ -1,0 +1,23 @@
+{
+  "ai_solutions": [
+    {"keyword": "What are AI solutions for businesses?", "volume": 5000},
+    {"keyword": "How much does AI consultancy cost in Bangalore?", "volume": 1200},
+    {"keyword": "Can AI help startups in Bangalore?", "volume": 900},
+    {"keyword": "What industries benefit most from AI?", "volume": 800},
+    {"keyword": "Is AI implementation complex?", "volume": 700}
+  ],
+  "cybersecurity": [
+    {"keyword": "What threats does cybersecurity protect against?", "volume": 4000},
+    {"keyword": "How can businesses in Bangalore improve cybersecurity?", "volume": 1100},
+    {"keyword": "Is cybersecurity expensive?", "volume": 950},
+    {"keyword": "Do startups need cybersecurity?", "volume": 850}
+  ],
+  "data_consultancy": [
+    {"keyword": "What is data consultancy?", "volume": 3000},
+    {"keyword": "How can data consultancy help my business?", "volume": 1000}
+  ],
+  "software_development": [
+    {"keyword": "What types of software do you develop?", "volume": 2500},
+    {"keyword": "How long does software development take?", "volume": 900}
+  ]
+}

@@ -1,0 +1,19 @@
+# robots.txt for Deep Dimensions
+User-agent: *
+Allow: /
+
+# Allow major answer engines and search bots
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: CCBot
+Allow: /
+
+# Disallow sensitive or irrelevant files
+Disallow: /docs/
+Disallow: /README.md
+Disallow: /.git/
+
+# Sitemap reference (add if you have sitemap.xml)
+# Sitemap: https://deep-dimensions.com/sitemap.xml
