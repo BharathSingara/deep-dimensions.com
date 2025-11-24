@@ -1,47 +1,40 @@
 "use client";
 
-import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Mail, MapPin, Clock, Loader2, CheckCircle } from "lucide-react";
+import { useForm, ValidationError } from '@formspree/react';
 
 export default function ContactPage() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        projectType: "",
-        challenge: ""
-    });
-    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-    const [errorMessage, setErrorMessage] = useState("");
+    const [state, handleSubmit] = useForm("mpweqqqz");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setStatus("submitting");
-        setErrorMessage("");
-
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) throw new Error("Failed to submit form");
-
-            setStatus("success");
-            setFormData({ name: "", email: "", phone: "", company: "", projectType: "", challenge: "" });
-        } catch (error) {
-            setStatus("error");
-            setErrorMessage("Something went wrong. Please try again.");
-        }
-    };
+    if (state.succeeded) {
+        return (
+            <main className="min-h-screen bg-deep-950 text-foreground selection:bg-brand-primary selection:text-deep-950">
+                <Navbar />
+                <div className="pt-32 pb-24 relative overflow-hidden min-h-screen flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5 pointer-events-none" />
+                    <div className="container mx-auto px-4 relative z-10 text-center">
+                        <div className="glass p-10 max-w-2xl mx-auto border border-brand-primary/20 shadow-[0_0_30px_rgba(0,240,255,0.1)]">
+                            <CheckCircle className="w-20 h-20 text-brand-primary mx-auto mb-6 drop-shadow-[0_0_15px_rgba(0,240,255,0.5)]" />
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-heading uppercase text-white">Message Transmitted!</h2>
+                            <p className="text-gray-400 text-lg font-mono mb-8">
+                                // ACKNOWLEDGEMENT RECEIVED <br />
+                                We have received your signal. Our engineering team will decode your requirements and establish a secure link shortly.
+                            </p>
+                            <button
+                                onClick={() => window.location.reload()}
+                                className="px-8 py-3 rounded-none skew-x-[-10deg] border border-brand-primary/50 hover:bg-brand-primary/10 transition-colors text-brand-primary font-bold uppercase tracking-wider"
+                            >
+                                <span className="skew-x-[10deg]">Initialize New Transmission</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <Footer />
+            </main>
+        );
+    }
 
     return (
         <main className="min-h-screen bg-deep-950 text-foreground selection:bg-brand-primary selection:text-deep-950">
@@ -102,45 +95,30 @@ export default function ContactPage() {
                         <div className="lg:w-7/12 w-full">
                             <form onSubmit={handleSubmit} className="glass p-6 md:p-8 rounded-none skew-x-[-1deg] space-y-5 relative overflow-hidden border border-brand-primary/20 shadow-[0_0_30px_rgba(0,240,255,0.05)] max-w-2xl mx-auto lg:ml-auto">
                                 <div className="skew-x-[1deg]">
-                                    {status === "success" && (
-                                        <div className="absolute inset-0 bg-deep-950/95 backdrop-blur-md flex flex-col items-center justify-center z-10 text-center p-8">
-                                            <CheckCircle className="w-16 h-16 text-brand-primary mb-4 drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]" />
-                                            <h3 className="text-2xl font-bold mb-2 font-heading uppercase text-white">Message Received!</h3>
-                                            <p className="text-gray-400 mb-6 font-mono">We'll be in touch shortly to schedule your strategy call.</p>
-                                            <button
-                                                type="button"
-                                                onClick={() => setStatus("idle")}
-                                                className="px-6 py-2 rounded-none skew-x-[-10deg] border border-brand-primary/50 hover:bg-brand-primary/10 transition-colors text-brand-primary font-bold uppercase"
-                                            >
-                                                <span className="skew-x-[10deg]">Send Another Message</span>
-                                            </button>
-                                        </div>
-                                    )}
-
                                     <div className="grid md:grid-cols-2 gap-5">
                                         <div className="space-y-1.5">
                                             <label className="text-xs font-bold text-brand-primary font-mono uppercase">Name *</label>
                                             <input
                                                 required
+                                                id="name"
                                                 name="name"
-                                                value={formData.name}
-                                                onChange={handleChange}
                                                 type="text"
                                                 placeholder="How should we address you?"
                                                 className="w-full bg-deep-900/50 border border-white/10 rounded-none px-4 py-2.5 focus:outline-none focus:border-brand-primary focus:shadow-[0_0_10px_rgba(0,240,255,0.2)] transition-all text-white placeholder:text-gray-600 font-sans text-sm"
                                             />
+                                            <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs" />
                                         </div>
                                         <div className="space-y-1.5">
                                             <label className="text-xs font-bold text-brand-primary font-mono uppercase">Work Email *</label>
                                             <input
                                                 required
+                                                id="email"
                                                 name="email"
-                                                value={formData.email}
-                                                onChange={handleChange}
                                                 type="email"
                                                 placeholder="So we can send the invite"
                                                 className="w-full bg-deep-900/50 border border-white/10 rounded-none px-4 py-2.5 focus:outline-none focus:border-brand-primary focus:shadow-[0_0_10px_rgba(0,240,255,0.2)] transition-all text-white placeholder:text-gray-600 font-sans text-sm"
                                             />
+                                            <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs" />
                                         </div>
                                     </div>
 
@@ -148,24 +126,24 @@ export default function ContactPage() {
                                         <div className="space-y-1.5">
                                             <label className="text-xs font-bold text-brand-primary font-mono uppercase">Phone Number</label>
                                             <input
+                                                id="phone"
                                                 name="phone"
-                                                value={formData.phone}
-                                                onChange={handleChange}
                                                 type="tel"
                                                 placeholder="+1 (555) 000-0000"
                                                 className="w-full bg-deep-900/50 border border-white/10 rounded-none px-4 py-2.5 focus:outline-none focus:border-brand-primary focus:shadow-[0_0_10px_rgba(0,240,255,0.2)] transition-all text-white placeholder:text-gray-600 font-sans text-sm"
                                             />
+                                            <ValidationError prefix="Phone" field="phone" errors={state.errors} className="text-red-500 text-xs" />
                                         </div>
                                         <div className="space-y-1.5">
                                             <label className="text-xs font-bold text-brand-primary font-mono uppercase">Company</label>
                                             <input
+                                                id="company"
                                                 name="company"
-                                                value={formData.company}
-                                                onChange={handleChange}
                                                 type="text"
                                                 placeholder="To help us research beforehand"
                                                 className="w-full bg-deep-900/50 border border-white/10 rounded-none px-4 py-2.5 focus:outline-none focus:border-brand-primary focus:shadow-[0_0_10px_rgba(0,240,255,0.2)] transition-all text-white placeholder:text-gray-600 font-sans text-sm"
                                             />
+                                            <ValidationError prefix="Company" field="company" errors={state.errors} className="text-red-500 text-xs" />
                                         </div>
                                     </div>
 
@@ -173,9 +151,8 @@ export default function ContactPage() {
                                         <label className="text-xs font-bold text-brand-primary font-mono uppercase">Project Type *</label>
                                         <select
                                             required
+                                            id="projectType"
                                             name="projectType"
-                                            value={formData.projectType}
-                                            onChange={handleChange}
                                             className="w-full bg-deep-900/50 border border-white/10 rounded-none px-4 py-2.5 focus:outline-none focus:border-brand-primary focus:shadow-[0_0_10px_rgba(0,240,255,0.2)] transition-all text-white appearance-none font-sans text-sm"
                                         >
                                             <option value="" className="bg-deep-950 text-gray-500">Select a project type...</option>
@@ -185,33 +162,28 @@ export default function ContactPage() {
                                             <option value="Cybersecurity" className="bg-deep-950">Cybersecurity</option>
                                             <option value="Other" className="bg-deep-950">Other</option>
                                         </select>
+                                        <ValidationError prefix="Project Type" field="projectType" errors={state.errors} className="text-red-500 text-xs" />
                                     </div>
 
                                     <div className="space-y-1.5">
                                         <label className="text-xs font-bold text-brand-primary font-mono uppercase">What’s the Challenge?</label>
                                         <textarea
+                                            id="challenge"
                                             name="challenge"
-                                            value={formData.challenge}
-                                            onChange={handleChange}
                                             rows={3}
                                             placeholder="Briefly tell us what you want to solve or build..."
                                             className="w-full bg-deep-900/50 border border-white/10 rounded-none px-4 py-2.5 focus:outline-none focus:border-brand-primary focus:shadow-[0_0_10px_rgba(0,240,255,0.2)] transition-all text-white placeholder:text-gray-600 font-sans text-sm"
                                         ></textarea>
+                                        <ValidationError prefix="Challenge" field="challenge" errors={state.errors} className="text-red-500 text-xs" />
                                     </div>
-
-                                    {status === "error" && (
-                                        <p className="text-brand-accent text-sm text-center font-mono border border-brand-accent/50 bg-brand-accent/10 p-2">
-                                            // ERROR: TRANSMISSION FAILED. PLEASE RETRY.
-                                        </p>
-                                    )}
 
                                     <button
                                         type="submit"
-                                        disabled={status === "submitting"}
+                                        disabled={state.submitting}
                                         className="w-full py-3 rounded-none skew-x-[-2deg] bg-brand-primary text-deep-950 font-bold hover:bg-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,240,255,0.3)]"
                                     >
                                         <span className="skew-x-[2deg] flex items-center gap-2 uppercase tracking-wider text-sm">
-                                            {status === "submitting" ? (
+                                            {state.submitting ? (
                                                 <>
                                                     <Loader2 className="animate-spin" size={18} /> Transmitting...
                                                 </>
