@@ -1,6 +1,14 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+// Generate static paths for legal pages
+export async function generateStaticParams() {
+    return [
+        { slug: 'privacy' },
+        { slug: 'terms' },
+    ];
+}
+
 export default async function LegalPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     // In a real app, this would be dynamic. For now, we'll render a generic legal layout.
